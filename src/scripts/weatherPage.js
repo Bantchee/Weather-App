@@ -1,4 +1,4 @@
-import {getWeatherData} from './fetchWeatherData';
+import {getWeatherData} from './weatherData';
 
 export const weatherPage = (() => {
     const state = {
@@ -23,14 +23,14 @@ export const weatherPage = (() => {
     const bindings = () => {
       state.unitBtn.addEventListener('click', (event) => {
         if(state.mainElement.classList.contains('imperial')) {
-          state.unitBtn.textContent = 'F';
+          state.unitBtn.textContent = 'C';
           getWeatherData(state.location, 'metric');
 
           state.mainElement.classList.remove('imperial');
           state.mainElement.classList.add('metric');
         } 
         else if (state.mainElement.classList.contains('metric')) {
-          state.unitBtn.textContent = 'C';
+          state.unitBtn.textContent = 'F';
           getWeatherData(state.location, 'imperial');
 
           state.mainElement.classList.remove('metric');
