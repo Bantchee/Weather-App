@@ -1,10 +1,12 @@
 import {getWeatherData} from './weatherData';
+import searchSvg from '../icons/search.svg';
 
 export const weatherPage = (() => {
     const state = {
         location: 'coachella',
         mainElement: null,
         footerElement: null,
+        searchForm: null,
         searchBtn: null,
         searchBar: null,
         unitBtn: null,
@@ -12,8 +14,8 @@ export const weatherPage = (() => {
     };
 
     const render = () => {
-        state.mainElement = renderMainElement();
-        state.footerElement = renderFooterElement();
+        state.mainElement = renderMainElement(document.body);
+        state.footerElement = renderFooterElement(document.body);
 
         bindings();
     };
@@ -21,17 +23,48 @@ export const weatherPage = (() => {
     // Function that adds functionality to the interactive buttons
     // and inputs of the webpage
     const bindings = () => {
-      state.unitBtn.addEventListener('click', (event) => {
+      state.searchBtn.addEventListener('click', (event) => {
+        if(state.searchBar.value !== '') {
+          state.location = state.searchBar.value;
+          getWeatherData(state.location, ((state.mainElement.classList.contains('imperial')) ? 'imperial' : 'metric'))
+            .then((response) => {
+              if(typeof(data) === 'string') {
+                console.log(response);
+              }
+              else {
+                // function to update page weather info with data in object
+                console.log(response);
+              }
+            });
+        }
+        else {
+          getWeatherData(state.location, ((state.mainElement.classList.contains('imperial')) ? 'imperial' : 'metric'))
+          .then((response) => {
+            if(typeof(data) === 'string') {
+              console.log(response);
+            }
+            else {
+              // function to update page weather info with data in object
+              console.log(response);
+            }
+          });
+        }
+        event.preventDefault();
+      });
+
+      state.unitBtn.addEventListener('click', async (event) => {
         if(state.mainElement.classList.contains('imperial')) {
           state.unitBtn.textContent = 'C';
-          getWeatherData(state.location, 'metric');
+          let data = await getWeatherData(state.location, 'metric');
+          console.log(data);
 
           state.mainElement.classList.remove('imperial');
           state.mainElement.classList.add('metric');
         } 
         else if (state.mainElement.classList.contains('metric')) {
           state.unitBtn.textContent = 'F';
-          getWeatherData(state.location, 'imperial');
+          let data = await getWeatherData(state.location, 'imperial');
+          console.log(data);
 
           state.mainElement.classList.remove('metric');
           state.mainElement.classList.add('imperial');
@@ -63,13 +96,15 @@ export const weatherPage = (() => {
 
     // returns an html element called main
     // In > Out : Void > Object
-    const renderMainElement = () => {
-        let mainElement = createElement('div', document.body, 'main', 'imperial');
+    const renderMainElement = (parent) => {
+        let mainElement = createElement('div', parent, 'main', 'imperial');
             // Child elements
+            state.searchForm = renderSearchForm(mainElement);
             state.unitBtn = renderUnitBtnElement(mainElement);
         return mainElement;
     }
 
+    // Returns btn used to convert weather measurements from imperial to metric
     const renderUnitBtnElement = (parent) => {
       let unitBtn = createElement('button', parent, 'unit');
         unitBtn.textContent = "F";
@@ -77,10 +112,31 @@ export const weatherPage = (() => {
     }
 
 
+    const renderSearchForm = (parent) => {
+      let searchForm = createElement('form', parent, 'search-element');
+      // Children
+        state.searchBar = renderSearchBar(searchForm);
+        state.searchBtn = renderSearchBtn(searchForm);
+      return searchForm;
+    }
+
+    const renderSearchBar = (parent) => {
+      let searchBar = createElement('input', parent, 'search-bar');
+      return searchBar;
+    }
+
+    const renderSearchBtn = (parent) => {
+      let searchBtn = createElement('button', parent, 'search-btn');
+        // Children
+          let searchBtnImg = createElement('img', searchBtn);
+          searchBtnImg.src = searchSvg;
+      return searchBtn;
+    }
+
     // returns an html element called main
-    // In > Out : Void > Object
-    const renderFooterElement = () => {
-        let footerElement = createElement('footer', document.body, 'main');
+    // In > Out : parent > Object
+    const renderFooterElement = (parent) => {
+        let footerElement = createElement('footer', parent, 'main');
             // Child elements
         return footerElement;
     }
