@@ -18,20 +18,24 @@ export const weatherPage = (() => {
         state.mainElement = renderMainElement(document.body);
         state.footerElement = renderFooterElement(document.body);
 
+        updateWeatherInfo();
         bindings();
     };
 
-    const updateWeatherInfo = () => {
-      // Discription
-      // Location
-      // Day
-      // Date
-      // Temp
-      // Feels Like
-      // Min Temp
-      // Max Temp
-      // Wind
-      // Humidity
+    const updateWeatherInfo = async () => {
+      const weatherInfo = await getWeatherData(state.location, ((state.mainElement.classList.contains('imperial')) ? 'imperial' : 'metric'));
+      console.log('Weather info ', weatherInfo);
+      let weatherIcon = state.mainElement.querySelector('img.weather-icon');
+      let weatherParas = state.mainElement.querySelectorAll('p');
+      weatherParas.forEach((para) => {
+        console.log(para.classList[0]);
+        if(para.classList.contains('date')) {
+          para.textContent = `${para.classList}: ${weatherInfo["date"].toDateString()}`;
+        } 
+        else {
+          para.textContent = `${para.classList}: ${weatherInfo[para.classList[0]]}`;
+        }
+      });
     };
 
     // Function that adds functionality to the interactive buttons
@@ -112,9 +116,6 @@ export const weatherPage = (() => {
     // In > Out : Void > Object
     const renderMainElement = (parent) => {
         let mainElement = createElement('div', parent, 'main', 'imperial');
-            // // Child elements
-            // state.searchForm = renderSearchForm(mainElement);
-            // state.unitBtn = renderUnitBtnElement(mainElement);
             // Div : content
             let contentDiv = createElement('div', mainElement, null, 'content');
               // Search Form
@@ -131,19 +132,16 @@ export const weatherPage = (() => {
                 let weatherInfoDiv = createElement('div', containerDiv, null, 'weather-info');
                   // Div : Top
                   let topInfoDiv = createElement('div', weatherInfoDiv, null, 'top');
-                    // Para : weather discription
-                    let weatherDiscriptionPara = createElement('p', topInfoDiv, null, 'weather-discription');
-                    weatherDiscriptionPara.textContent = 'Sunny';
+                    // Para : weather description
+                    let weatherdescriptionPara = createElement('p', topInfoDiv, null, 'weather-description');
+                    weatherdescriptionPara.textContent = 'Sunny';
                     // Para : Location
-                    let weatherLocationPara = createElement('p', topInfoDiv, null, 'weather-discription');
+                    let weatherLocationPara = createElement('p', topInfoDiv, null, 'location');
                     weatherLocationPara.textContent = 'Coachella, California';
                   // Div : Left-Right
                   let leftRightDiv = createElement('div', containerDiv, null, 'left-right');
                     // Div : Left
                     let leftDiv = createElement('div', leftRightDiv, null, 'left');
-                      // Para : Day
-                      let dayPara = createElement('p', leftDiv, null, 'day');
-                      dayPara.textContent = 'Day: Wednesday';
                       // Para : Date
                       let datePara = createElement('p', leftDiv, null, 'date');
                       datePara.textContent = 'Date: Nov 23, 2022';

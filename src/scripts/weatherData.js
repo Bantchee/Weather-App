@@ -20,17 +20,16 @@ async function fetchWeatherData(location, unit) {
 
 // NOT DONE
 async function processWeatherData(jsonData) {
-
-    let name = await jsonData.name;
-    let main = await jsonData.main;
-    let weather = await jsonData.weather[0];
-    let wind = await jsonData.wind;
-
-    return Object.assign(
-        {},
-        {name},
-        {weather},
-        {main},
-        {wind},
-    );
+    const data = {
+        location: jsonData.name,
+        'weather-description': jsonData.weather[0].description,
+        date: new Date(),
+        temp: jsonData.main.temp,
+        'feels-like': jsonData.main.feels_like,
+        'min-temp': jsonData.main.temp_min,
+        'max-temp': jsonData.main.temp_max,
+        wind: jsonData.wind.speed + ' mph',
+        humidity: jsonData.main.humidity + '%',
+    }
+    return data;
 }
