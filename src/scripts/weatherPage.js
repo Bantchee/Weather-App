@@ -1,5 +1,6 @@
 import {getWeatherData} from './weatherData';
 import searchSvg from '../icons/search.svg';
+import gitHubSvg from '../icons/github.svg';
 
 export const weatherPage = (() => {
     const state = {
@@ -101,6 +102,31 @@ export const weatherPage = (() => {
             // Child elements
             state.searchForm = renderSearchForm(mainElement);
             state.unitBtn = renderUnitBtnElement(mainElement);
+            // Div : content
+            let contentDiv = createElement('div', mainElement, null, 'content');
+              // Search Form
+              state.searchForm = renderSearchForm(contentDiv);
+              // Div : Content
+              let containerDiv = createElement('div', contentDiv, null, "container");
+                // Div : Img
+                let imgDiv = createElement('div', containerDiv, null, 'img-div');
+                  // Img : Weather Icon
+                  let weatherImg = createElement('div', imgDiv, null, 'weather-icon');
+                // Div
+                  // Div : Top
+                    // Div
+                      // Div : Left
+                        // Para : Day
+                        // Para : Date
+                        // Div
+                          // Para : Temp
+                          // Button : Unit
+                      // Div : Right
+                        // Para : Feels Like
+                        // Para : Min Temp
+                        // Para : Max Temp
+                        // Para : Wind
+                        // Para : Humidity
         return mainElement;
     }
 
@@ -137,7 +163,19 @@ export const weatherPage = (() => {
     // In > Out : parent > Object
     const renderFooterElement = (parent) => {
         let footerElement = createElement('footer', parent, 'main');
-            // Child elements
+          // Div
+          let content = createElement('div', footerElement, null, 'content');
+            // Para : Made by
+            let madeByPara = createElement('p', content);
+            madeByPara.textContent = "Made by ";
+            // Button
+            state.gitHubBtn = createElement('button', content, 'github-btn');
+              // Img : Github
+              let gitHubImg = createElement('img', state.gitHubBtn);
+              gitHubImg.src = gitHubSvg;
+            // Para : Jar'Zeno
+            let namePara = createElement('p', content);
+            namePara.textContent = " Jar'zeno Jarrett";
         return footerElement;
     }
 

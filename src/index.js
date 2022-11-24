@@ -1,5 +1,5 @@
 import {weatherPage} from './scripts/weatherPage';
-import {getWeatherData} from './scripts/weatherData';
+import './styles/style.css'
 
 weatherPage.render();
 

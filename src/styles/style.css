@@ -1,0 +1,14 @@
+/* MAIN */
+
+/* FOOTER  */
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer div.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
