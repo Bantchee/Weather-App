@@ -24,11 +24,13 @@ async function processWeatherData(jsonData) {
     let name = await jsonData.name;
     let main = await jsonData.main;
     let weather = await jsonData.weather[0];
+    let wind = await jsonData.wind;
 
     return Object.assign(
         {},
         {name},
-        weather,
-        main,
+        {weather},
+        {main},
+        {wind},
     );
 }
