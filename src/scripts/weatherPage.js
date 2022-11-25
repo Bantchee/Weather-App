@@ -28,10 +28,13 @@ export const weatherPage = (() => {
       let weatherIcon = state.mainElement.querySelector('img.weather-icon');
       let weatherParas = state.mainElement.querySelectorAll('p');
       weatherParas.forEach((para) => {
-        console.log(para.classList[0]);
         if(para.classList.contains('date')) {
           para.textContent = `${para.classList}: ${weatherInfo["date"].toDateString()}`;
         } 
+        else if(para.classList.contains('wind')) {
+          para.textContent = `${para.classList}: ${weatherInfo[para.classList[0]]
+            + ((state.mainElement.classList.contains('imperial')) ? ' mph' : ' kph')}`;
+        }
         else {
           para.textContent = `${para.classList}: ${weatherInfo[para.classList[0]]}`;
         }
@@ -50,8 +53,7 @@ export const weatherPage = (() => {
                 console.log(response);
               }
               else {
-                // function to update page weather info with data in object
-                console.log(response);
+                updateWeatherInfo();
               }
             });
         }
@@ -62,8 +64,7 @@ export const weatherPage = (() => {
               console.log(response);
             }
             else {
-              // function to update page weather info with data in object
-              console.log(response);
+              updateWeatherInfo();
             }
           });
         }
@@ -73,19 +74,17 @@ export const weatherPage = (() => {
       state.unitBtn.addEventListener('click', async (event) => {
         if(state.mainElement.classList.contains('imperial')) {
           state.unitBtn.innerHTML = '&#176;C';
-          let data = await getWeatherData(state.location, 'metric');
-          console.log(data);
-
           state.mainElement.classList.remove('imperial');
           state.mainElement.classList.add('metric');
+
+          updateWeatherInfo();
         } 
         else if (state.mainElement.classList.contains('metric')) {
           state.unitBtn.innerHTML = '&#176;F';
-          let data = await getWeatherData(state.location, 'imperial');
-          console.log(data);
-
           state.mainElement.classList.remove('metric');
           state.mainElement.classList.add('imperial');
+
+          updateWeatherInfo();
         }
       });
 

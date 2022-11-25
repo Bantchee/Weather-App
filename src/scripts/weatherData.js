@@ -28,7 +28,7 @@ async function processWeatherData(jsonData) {
         'feels-like': jsonData.main.feels_like,
         'min-temp': jsonData.main.temp_min,
         'max-temp': jsonData.main.temp_max,
-        wind: jsonData.wind.speed + ' mph',
+        wind: jsonData.wind.speed,
         humidity: jsonData.main.humidity + '%',
     }
     return data;
