@@ -15,15 +15,16 @@ export const weatherPage = (() => {
     };
 
     const render = () => {
-        state.mainElement = renderMainElement(document.body);
-        state.footerElement = renderFooterElement(document.body);
+      document.body.classList.add('imperial');
+      state.mainElement = renderMainElement(document.body);
+      state.footerElement = renderFooterElement(document.body);
 
-        updateWeatherInfo();
-        bindings();
+      updateWeatherInfo();
+      bindings();
     };
 
     const updateWeatherInfo = async () => {
-      const weatherInfo = await getWeatherData(state.location, ((state.mainElement.classList.contains('imperial')) ? 'imperial' : 'metric'));
+      const weatherInfo = await getWeatherData(state.location, ((document.body.classList.contains('imperial')) ? 'imperial' : 'metric'));
       console.log('Weather info ', weatherInfo);
       let weatherIcon = state.mainElement.querySelector('img.weather-icon');
       let weatherParas = state.mainElement.querySelectorAll('p');
@@ -33,7 +34,7 @@ export const weatherPage = (() => {
         } 
         else if(para.classList.contains('wind')) {
           para.textContent = `${para.classList}: ${weatherInfo[para.classList[0]]
-            + ((state.mainElement.classList.contains('imperial')) ? ' mph' : ' kph')}`;
+            + ((document.body.classList.contains('imperial')) ? ' mph' : ' kph')}`;
         }
         else {
           para.textContent = `${para.classList}: ${weatherInfo[para.classList[0]]}`;
@@ -47,7 +48,7 @@ export const weatherPage = (() => {
       state.searchBtn.addEventListener('click', (event) => {
         if(state.searchBar.value !== '') {
           state.location = state.searchBar.value;
-          getWeatherData(state.location, ((state.mainElement.classList.contains('imperial')) ? 'imperial' : 'metric'))
+          getWeatherData(state.location, ((document.body.classList.contains('imperial')) ? 'imperial' : 'metric'))
             .then((response) => {
               if(typeof(data) === 'string') {
                 console.log(response);
@@ -58,7 +59,7 @@ export const weatherPage = (() => {
             });
         }
         else {
-          getWeatherData(state.location, ((state.mainElement.classList.contains('imperial')) ? 'imperial' : 'metric'))
+          getWeatherData(state.location, ((document.body.classList.contains('imperial')) ? 'imperial' : 'metric'))
           .then((response) => {
             if(typeof(data) === 'string') {
               console.log(response);
@@ -72,17 +73,17 @@ export const weatherPage = (() => {
       });
 
       state.unitBtn.addEventListener('click', async (event) => {
-        if(state.mainElement.classList.contains('imperial')) {
+        if(document.body.classList.contains('imperial')) {
           state.unitBtn.innerHTML = '&#176;C';
-          state.mainElement.classList.remove('imperial');
-          state.mainElement.classList.add('metric');
+          document.body.classList.remove('imperial');
+          document.body.classList.add('metric');
 
           updateWeatherInfo();
         } 
-        else if (state.mainElement.classList.contains('metric')) {
+        else if (document.body.classList.contains('metric')) {
           state.unitBtn.innerHTML = '&#176;F';
-          state.mainElement.classList.remove('metric');
-          state.mainElement.classList.add('imperial');
+          document.body.classList.remove('metric');
+          document.body.classList.add('imperial');
 
           updateWeatherInfo();
         }
@@ -114,7 +115,7 @@ export const weatherPage = (() => {
     // returns an html element called main
     // In > Out : Void > Object
     const renderMainElement = (parent) => {
-        let mainElement = createElement('div', parent, 'main', 'imperial');
+        let mainElement = createElement('div', parent, 'main');
             // Div : content
             let contentDiv = createElement('div', mainElement, null, 'content');
               // Search Form

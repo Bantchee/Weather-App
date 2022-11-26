@@ -1,3 +1,12 @@
+:root {
+    --light-blue: #CAF0F8;
+    --blue: #48CAE4;
+    --dark-blue: #023E8A;
+    --light-orange: #FFC971;
+    --orange: #E2711D;
+    --dark-orange: #CC5803;
+}
+
 /* BODY */
 body {
     display: grid;

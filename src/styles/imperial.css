@@ -1,0 +1,7 @@
+body.imperial {
+    background-color: var(--light-blue);
+}
+
+body.imperial div#main div.content {
+    border: var(--blue) 3px solid;
+}
