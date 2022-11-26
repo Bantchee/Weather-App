@@ -119,55 +119,39 @@ export const weatherPage = (() => {
             let contentDiv = createElement('div', mainElement, null, 'content');
               // Search Form
               state.searchForm = renderSearchForm(contentDiv);
-              // Div : Content
-              let containerDiv = createElement('div', contentDiv, null, "container");
-                // Div : Img
-                let imgDiv = createElement('div', containerDiv, null, 'img-div');
-                  // Img : Weather Icon
-                  let weatherImg = createElement('img', imgDiv, null, 'weather-icon');
-                  // Temp
-                  weatherImg.src = gitHubSvg;
-                // Div : weather-info
-                let weatherInfoDiv = createElement('div', containerDiv, null, 'weather-info');
-                  // Div : Top
-                  let topInfoDiv = createElement('div', weatherInfoDiv, null, 'top');
-                    // Para : weather description
-                    let weatherdescriptionPara = createElement('p', topInfoDiv, null, 'weather-description');
-                    weatherdescriptionPara.textContent = 'Sunny';
-                    // Para : Location
-                    let weatherLocationPara = createElement('p', topInfoDiv, null, 'location');
-                    weatherLocationPara.textContent = 'Coachella, California';
-                  // Div : Left-Right
-                  let leftRightDiv = createElement('div', containerDiv, null, 'left-right');
-                    // Div : Left
-                    let leftDiv = createElement('div', leftRightDiv, null, 'left');
-                      // Para : Date
-                      let datePara = createElement('p', leftDiv, null, 'date');
-                      datePara.textContent = 'Date: Nov 23, 2022';
-                      // Div : temp
-                      let tempDiv = createElement('div', leftDiv, null, 'temp');
-                        // Para : Temp
-                        let tempPara = createElement('p', tempDiv, null, 'temp');
-                        tempPara.textContent = '73';
-                        // Button : Unit
-                        state.unitBtn = renderUnitBtnElement(tempDiv);
-                    // Div : Right
-                    let rightDiv = createElement('div', leftRightDiv, null, 'right');
-                      // Para : Feels Like
-                      let feelsLikePara = createElement('p', rightDiv, null, 'feels-like');
-                      feelsLikePara.textContent = 'Feels Like: 72';
-                      // Para : Min Temp
-                      let minTempPara = createElement('p', rightDiv, null, 'min-temp');
-                      minTempPara.textContent = 'Min Temp: 63';
-                      // Para : Max Temp
-                      let maxTempPara = createElement('p', rightDiv, null, 'max-temp');
-                      maxTempPara.textContent = 'Max Temp: 80';
-                      // Para : Wind
-                      let windPara = createElement('p', rightDiv, null, 'wind');
-                      windPara.textContent = 'Wind: 4 mph';
-                      // Para : Humidity
-                      let humidityPara = createElement('p', rightDiv, null, 'humidity');
-                      humidityPara.textContent = 'Humidity: 8%';
+              // Img : Weather Icon
+              let weatherImg = createElement('img', contentDiv, null, 'weather-icon');
+              // Temp
+              weatherImg.src = gitHubSvg;
+              // Para : weather description
+              let weatherdescriptionPara = createElement('p', contentDiv, null, 'weather-description');
+              weatherdescriptionPara.textContent = 'Sunny';
+              // Para : Location
+              let weatherLocationPara = createElement('p', contentDiv, null, 'location');
+              weatherLocationPara.textContent = 'Coachella, California';
+              // Para : Date
+              let datePara = createElement('p', contentDiv, null, 'date');
+              datePara.textContent = 'Date: Nov 23, 2022';
+              // Para : Temp
+              let tempPara = createElement('p', contentDiv, null, 'temp');
+              tempPara.textContent = '73';
+              // Button : Unit
+              state.unitBtn = renderUnitBtnElement(contentDiv);
+              // Para : Feels Like
+              let feelsLikePara = createElement('p', contentDiv, null, 'feels-like');
+              feelsLikePara.textContent = 'Feels Like: 72';
+              // Para : Min Temp
+              let minTempPara = createElement('p', contentDiv, null, 'min-temp');
+              minTempPara.textContent = 'Min Temp: 63';
+              // Para : Max Temp
+              let maxTempPara = createElement('p', contentDiv, null, 'max-temp');
+              maxTempPara.textContent = 'Max Temp: 80';
+              // Para : Wind
+              let windPara = createElement('p', contentDiv, null, 'wind');
+              windPara.textContent = 'Wind: 4 mph';
+              // Para : Humidity
+              let humidityPara = createElement('p', contentDiv, null, 'humidity');
+              humidityPara.textContent = 'Humidity: 8%';
         return mainElement;
     }
 

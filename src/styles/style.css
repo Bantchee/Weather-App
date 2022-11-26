@@ -1,4 +1,19 @@
+/* BODY */
+body {
+    display: grid;
+}
+
 /* MAIN */
+div#main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div#main div.content {
+    display: flex;
+    flex-direction: column;
+}
 
 /* FOOTER  */
 footer {
