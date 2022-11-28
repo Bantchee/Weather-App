@@ -1,3 +1,44 @@
+/* Body */
 body.metric {
+    background-color: var(--light-orange);
+    color: var(--dark-orange);
+}
+
+body.metric form input {
+    background-color: var(--orange);
+    border: var(--dark-orange);
+    color: var(--light-orange);
+}
+
+body.metric form button {
+    background-color: var(--orange);
+    border: var(--dark-orange);
+}
+
+body.metric #unit {
+    background-color: var(--orange);
+}
+
+body.metric #unit {
+    cursor: pointer;
+}
+
+/* Footer */
+body.metric footer {
+    color: var(--light-orange);
+    background-color: var(--orange);
+}
+
+body.metric footer div.content a#github-btn {
+    background-color: rgba(255, 201, 113, 0.8);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.metric footer div.content a#github-btn:hover {
+    cursor: pointer;
     background-color: var(--light-orange);
 }

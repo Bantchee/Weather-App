@@ -1,7 +1,44 @@
+/* Body */
 body.imperial {
     background-color: var(--light-blue);
+    color: var(--dark-blue);
 }
 
-body.imperial div#main div.content {
-    border: var(--blue) 3px solid;
+body.imperial form input {
+    background-color: var(--blue);
+    border: var(--dark-blue);
+    color: var(--light-blue);
+}
+
+body.imperial form button {
+    background-color: var(--blue);
+    border: var(--dark-blue);
+}
+
+body.imperial #unit {
+    background-color: var(--blue);
+}
+
+body.imperial #unit {
+    cursor: pointer;
+}
+
+/* Footer */
+body.imperial footer {
+    color: var(--light-blue);
+    background-color: var(--blue);
+}
+
+body.imperial footer div.content a#github-btn {
+    background-color: rgba(202, 240, 248, 0.80);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.imperial footer div.content a#github-btn:hover {
+    cursor: pointer;
+    background-color: var(--light-blue);
 }

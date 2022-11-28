@@ -26,7 +26,6 @@ export const weatherPage = (() => {
     const updateWeatherInfo = async () => {
       const weatherInfo = await getWeatherData(state.location, ((document.body.classList.contains('imperial')) ? 'imperial' : 'metric'));
       console.log('Weather info ', weatherInfo);
-      let weatherIcon = state.mainElement.querySelector('img.weather-icon');
       let weatherParas = state.mainElement.querySelectorAll('p');
       weatherParas.forEach((para) => {
         if(para.classList.contains('date')) {
@@ -76,6 +75,7 @@ export const weatherPage = (() => {
         event.preventDefault();
       });
 
+
       state.unitBtn.addEventListener('click', async (event) => {
         if(document.body.classList.contains('imperial')) {
           state.unitBtn.innerHTML = '&#176;C';
@@ -124,16 +124,12 @@ export const weatherPage = (() => {
             let contentDiv = createElement('div', mainElement, null, 'content');
               // Search Form
               state.searchForm = renderSearchForm(contentDiv);
-              // Img : Weather Icon
-              let weatherImg = createElement('img', contentDiv, null, 'weather-icon');
-              // Temp
-              weatherImg.src = gitHubSvg;
-              // Para : weather description
-              let weatherdescriptionPara = createElement('p', contentDiv, null, 'weather-description');
-              weatherdescriptionPara.textContent = 'Weather Description:';
               // Para : Location
               let weatherLocationPara = createElement('p', contentDiv, null, 'location');
               weatherLocationPara.textContent = 'Location:';
+              // Para : weather description
+              let weatherdescriptionPara = createElement('p', contentDiv, null, 'weather-description');
+              weatherdescriptionPara.textContent = 'Weather Description:';
               // Para : Date
               let datePara = createElement('p', contentDiv, null, 'date');
               datePara.textContent = 'Date:';
@@ -200,10 +196,11 @@ export const weatherPage = (() => {
             let madeByPara = createElement('p', content);
             madeByPara.textContent = "Made by ";
             // Button
-            state.gitHubBtn = createElement('button', content, 'github-btn');
+            state.gitHubBtn = createElement('a', content, 'github-btn');
               // Img : Github
               let gitHubImg = createElement('img', state.gitHubBtn);
               gitHubImg.src = gitHubSvg;
+            state.gitHubBtn.href = 'https://github.com/Bantchee';
             // Para : Jar'Zeno
             let namePara = createElement('p', content);
             namePara.textContent = " Jar'zeno Jarrett";
