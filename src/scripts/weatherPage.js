@@ -30,17 +30,21 @@ export const weatherPage = (() => {
       let weatherParas = state.mainElement.querySelectorAll('p');
       weatherParas.forEach((para) => {
         if(para.classList.contains('date')) {
-          para.textContent = `${para.classList}: ${weatherInfo["date"].toDateString()}`;
+          para.textContent = `${processSearchText(para.classList[0])}: ${weatherInfo["date"].toDateString()}`;
         } 
         else if(para.classList.contains('wind')) {
-          para.textContent = `${para.classList}: ${weatherInfo[para.classList[0]]
+          para.textContent = `${processSearchText(para.classList[0])}: ${weatherInfo[para.classList[0]]
             + ((document.body.classList.contains('imperial')) ? ' mph' : ' kph')}`;
         }
         else {
-          para.textContent = `${para.classList}: ${weatherInfo[para.classList[0]]}`;
+          para.textContent = `${processSearchText(para.classList[0])}: ${weatherInfo[para.classList[0]]}`;
         }
       });
     };
+
+    const processSearchText = (text) => capitalize(text.split('-')).join(' ');
+
+    const capitalize = (arrText) => arrText.map((text) => text[0].toUpperCase() + text.slice(1));
 
     // Function that adds functionality to the interactive buttons
     // and inputs of the webpage
@@ -126,34 +130,34 @@ export const weatherPage = (() => {
               weatherImg.src = gitHubSvg;
               // Para : weather description
               let weatherdescriptionPara = createElement('p', contentDiv, null, 'weather-description');
-              weatherdescriptionPara.textContent = 'Sunny';
+              weatherdescriptionPara.textContent = 'Weather Description:';
               // Para : Location
               let weatherLocationPara = createElement('p', contentDiv, null, 'location');
-              weatherLocationPara.textContent = 'Coachella, California';
+              weatherLocationPara.textContent = 'Location:';
               // Para : Date
               let datePara = createElement('p', contentDiv, null, 'date');
-              datePara.textContent = 'Date: Nov 23, 2022';
+              datePara.textContent = 'Date:';
               let divTemp = createElement('div', contentDiv, null, 'temp');
                 // Para : Temp
                 let tempPara = createElement('p', divTemp, null, 'temp');
-                tempPara.textContent = '73';
+                tempPara.textContent = 'Temp: ';
                 // Button : Unit
                 state.unitBtn = renderUnitBtnElement(divTemp);
                 // Para : Feels Like
               let feelsLikePara = createElement('p', contentDiv, null, 'feels-like');
-              feelsLikePara.textContent = 'Feels Like: 72';
+              feelsLikePara.textContent = 'Feels Like:';
               // Para : Min Temp
               let minTempPara = createElement('p', contentDiv, null, 'min-temp');
-              minTempPara.textContent = 'Min Temp: 63';
+              minTempPara.textContent = 'Min Temp:';
               // Para : Max Temp
               let maxTempPara = createElement('p', contentDiv, null, 'max-temp');
-              maxTempPara.textContent = 'Max Temp: 80';
+              maxTempPara.textContent = 'Max Temp:';
               // Para : Wind
               let windPara = createElement('p', contentDiv, null, 'wind');
-              windPara.textContent = 'Wind: 4 mph';
+              windPara.textContent = 'Wind:';
               // Para : Humidity
               let humidityPara = createElement('p', contentDiv, null, 'humidity');
-              humidityPara.textContent = 'Humidity: 8%';
+              humidityPara.textContent = 'Humidity:';
         return mainElement;
     }
 
