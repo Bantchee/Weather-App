@@ -37,12 +37,12 @@ export const weatherPage = (() => {
             + ((document.body.classList.contains('imperial')) ? ' mph' : ' kph')}`;
         }
         else {
-          para.textContent = `${processSearchText(para.classList[0])}: ${weatherInfo[para.classList[0]]}`;
+          para.textContent = `${processSearchText(para.classList[0])}: ${processSearchText(weatherInfo[para.classList[0]])}`;
         }
       });
     };
 
-    const processSearchText = (text) => capitalize(text.split('-')).join(' ');
+    const processSearchText = (text) => (typeof text == 'string') ? capitalize(text.split('-')).join(' ') : text;
 
     const capitalize = (arrText) => arrText.map((text) => text[0].toUpperCase() + text.slice(1));
 
