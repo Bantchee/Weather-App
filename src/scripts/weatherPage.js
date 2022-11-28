@@ -133,12 +133,13 @@ export const weatherPage = (() => {
               // Para : Date
               let datePara = createElement('p', contentDiv, null, 'date');
               datePara.textContent = 'Date: Nov 23, 2022';
-              // Para : Temp
-              let tempPara = createElement('p', contentDiv, null, 'temp');
-              tempPara.textContent = '73';
-              // Button : Unit
-              state.unitBtn = renderUnitBtnElement(contentDiv);
-              // Para : Feels Like
+              let divTemp = createElement('div', contentDiv, null, 'temp');
+                // Para : Temp
+                let tempPara = createElement('p', divTemp, null, 'temp');
+                tempPara.textContent = '73';
+                // Button : Unit
+                state.unitBtn = renderUnitBtnElement(divTemp);
+                // Para : Feels Like
               let feelsLikePara = createElement('p', contentDiv, null, 'feels-like');
               feelsLikePara.textContent = 'Feels Like: 72';
               // Para : Min Temp

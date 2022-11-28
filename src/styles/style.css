@@ -24,6 +24,12 @@ div#main div.content {
     flex-direction: column;
 }
 
+/* DIV TEMP */
+div.temp {
+    display: flex;
+    align-items: center;
+}
+
 /* FOOTER  */
 footer {
     display: flex;
